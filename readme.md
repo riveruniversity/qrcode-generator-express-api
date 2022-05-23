@@ -73,8 +73,8 @@ export const myStyle = {
 }
 ```
 
-5.  Generate QR code: [http://localhost:1996/qr/123](http://localhost:1996/qr/1234567890)
-6.  Retrieve png file: [http://localhost:1996/load/123.png](http://localhost:1996/load/1234567890.png)
+5.  Generate QR code: [http://localhost:1996/qr/create/1234567890](http://localhost:1996/qr/create/1234567890)
+6.  Retrieve png file: [http://localhost:1996/qr/1234567890.png](http://localhost:1996/qr/1234567890.png)
 
   
 
