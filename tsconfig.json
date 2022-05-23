@@ -1,0 +1,29 @@
+
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    /*"module": "ES2020",*/
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "outDir": "build",
+    "rootDir": "./src",
+    "baseUrl": "./src",
+    "target": "ES2015",
+    
+    "lib": ["dom", "esnext.asynciterable"],                                               /* Specify a set of bundled library declaration files that describe the target runtime environment. */
+    "allowSyntheticDefaultImports": true,             /* Allow 'import x from y' when a module doesn't have a default export. */
+    "esModuleInterop": false,                          /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables `allowSyntheticDefaultImports` for type compatibility. */
+    "strict": true,                                   /* Enable all strict type-checking options. */
+
+    "skipLibCheck": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "sourceMap": true,
+    "declaration": true,
+    "importHelpers": true,
+  }
+}
+
+/* Visit https://aka.ms/tsconfig.json to read more about this file */
+// https://www.typescriptlang.org/docs/handbook/compiler-options.html 
