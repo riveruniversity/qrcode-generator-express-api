@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { color, log } from "../conf/conf";
+import { color, log } from "../conf";
 
 type Middleware = (request: Request, response: Response, next: NextFunction) => void;
 

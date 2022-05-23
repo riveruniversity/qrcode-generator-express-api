@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import * as QRCode from "qrcode";
 import { QRCodeToFileOptions } from "qrcode";
 
-import { color, log } from "../conf/conf";
+import { color, log } from "../conf";
 import { myStyle } from "./qr.vars";
 
 const {	QRCodeStyling } = require("qr-code-styling-node/lib/qr-code-styling.common.js");

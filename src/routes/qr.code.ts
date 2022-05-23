@@ -12,8 +12,7 @@ class QrCodeRouter {
 		this.router = Router();
 
 		this.router.use('/', express.static('public/qr'))
-		//this.router.use('/load/', express.static('public/qr'))
-		//this.router.use('/load', express.static(__dirname + '/public/qr'))
+		//this.router.use('/load/', express.static('public/qr')) // doesn't work 
 
 		this.router.get('/', this.badRequest);
 		this.router.get("/create/:barcode", CodeGenerator.style, Logger.done);
