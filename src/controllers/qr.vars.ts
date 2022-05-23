@@ -13,7 +13,7 @@ export const myStyle= {
 		hideBackgroundDots: true,
 		imageSize: 0.5,
 		margin: 10,
-		crossOrigin: "",
+		crossOrigin: "anonymous",
 	},
 	dotsOptions: {
 		type: "extra-rounded",

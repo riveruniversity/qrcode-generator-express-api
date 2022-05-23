@@ -15,6 +15,8 @@ const path = require('path')
 import { open } from "fs/promises";
 
 class CodeGeneratorController {
+
+	// Not in use right now
 	async generateHtml(
 		request: Request,
 		response: Response,
@@ -34,6 +36,7 @@ class CodeGeneratorController {
 		getQr.then((url) => response.render("qr", { url: url }));
 	}
 
+	// Not in use right now
 	async generateBuffer(request: Request, response: Response) {
 		const qr = await QRCode.toBuffer(request.params.barcode, {
 			width: 350,
@@ -79,12 +82,14 @@ class CodeGeneratorController {
 	}
 
 	async style(request: Request, response: Response, next: NextFunction) {
-		
-		if (request.params.format != 'png') {
+
+		if (request.params.format != 'png') { // 'png' 'jpeg' 'webp' 'svg'
 
 			response.end("Currently only PNG supported. You may add more support under 'controllers/qr.generator.ts'");
 			return
 		}
+
+
 		
 		myStyle.data = request.params.barcode
 
@@ -92,7 +97,7 @@ class CodeGeneratorController {
 		const qrCodeImage = new QRCodeStyling({
 			nodeCanvas, // this is required
 			...myStyle,
-		});
+		})
 
         const buffer = await qrCodeImage.getRawData(request.params.format)
 

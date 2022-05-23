@@ -22,16 +22,15 @@ class Server {
 
         var options = {
             dotfiles: 'ignore',
-            extensions: ['png', 'svg'],
+            extensions: ['png', 'jpeg', 'webp', 'svg'],
             index: false,
             redirect: false,
           }
         this.app.use(express.static(path.resolve('./public'), options))
-        //this.app.use('/qr', express.static('public/qr')) works
     }
 
     private initRoutes() {
-        
+        //this.app.use('/qr', express.static('public/qr')) works
         this.app.use(Routes.router);
     }
 

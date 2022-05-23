@@ -7,37 +7,43 @@ import { CodeGenerator } from "../controllers/qr.generator";
 
 class QrCodeRouter {
 	router: Router;
+	showRouter: Router;
 
 	constructor() {
 		this.router = Router();
+		this.showRouter = Router();
 
 		this.router.use('/', express.static('public/qr'))
-		//this.router.use('/load/', express.static('public/qr')) // doesn't work 
+		this.router.get('/', this.badRequest);
+		this.router.use('/show', this.showRouter.use('/', express.static('public/qr')))
 
 		this.router.get('/', this.badRequest);
-		this.router.get("/create/:barcode", CodeGenerator.style, Logger.done);
+		this.router.get("/create/:barcode.:format", CodeGenerator.style, Logger.done);
 		this.router.get("/create/:barcode", this.declined);
 		this.router.all("*", this.forbidden);
 	}
 
 	badRequest = (req: Request, res: Response) => {
 		res.status(400).json({
-			status: 400,
-			message: "Bad Request: expected a code number",
+			code: 400,
+			status: "Bad Request",
+			message: "expected code ...."
 		});
 	};
 
 	declined = (req: Request, res: Response) => {
 		res.status(406).json({
-			status: 406,
-			message: "Not Acceptable: code didn't meet the requirements",
+			code: 406,
+			status: "Not Acceptable",
+			message: "Add the file format ending '.png' or 'jpeg' 'webp' 'svg'. (currently only PNG)."
 		});
 	};
 
 	forbidden = (req: Request, res: Response) => {
 		res.status(403).json({
-			status: 403,
-			message: "Forbidden",
+			code: 403,
+			status: "Forbidden",
+			message: "Forbidden"
 		});
 	};
 }
