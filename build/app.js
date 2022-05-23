@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-//import express = require("express");
 const express = require("express");
 const bodyparser = require("body-parser");
 const path = require("path");
@@ -16,10 +15,16 @@ class Server {
         this.initRoutes();
     }
     initStatic() {
-        this.app.use(express.static(path.resolve('./public')));
-        this.app.use('/load', express.static('public/qr'));
+        var options = {
+            dotfiles: 'ignore',
+            extensions: ['png', 'jpeg', 'webp', 'svg'],
+            index: false,
+            redirect: false,
+        };
+        this.app.use(express.static(path.resolve('./public'), options));
     }
     initRoutes() {
+        //this.app.use('/qr', express.static('public/qr')) works
         this.app.use(routes_1.default.router);
     }
     initViewEngine() {

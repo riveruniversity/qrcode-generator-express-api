@@ -62,25 +62,29 @@ class CodeGeneratorController {
     }
     style(request, response, next) {
         return tslib_1.__awaiter(this, void 0, void 0, function* () {
+            if (request.params.format != 'png') { // 'png' 'jpeg' 'webp' 'svg'
+                response.end("Currently only PNG supported. You may add more support under 'controllers/qr.generator.ts'");
+                return;
+            }
             qr_vars_1.myStyle.data = request.params.barcode;
             // For canvas type
             const qrCodeImage = new QRCodeStyling(Object.assign({ nodeCanvas }, qr_vars_1.myStyle));
-            const buffer = yield qrCodeImage.getRawData("png");
-            const filename = path.resolve('./public/qr') + '/' + request.params.barcode + ".png";
+            const buffer = yield qrCodeImage.getRawData(request.params.format);
+            const filename = path.resolve('./public/qr') + '/' + request.params.barcode + "." + request.params.format;
             fs.writeFileSync(filename, buffer, { flag: 'w+' });
-            const base64 = buffer.toString('base64');
-            const src = `data:image/png;base64,${base64}`;
             // Response in downloadable image file
             // ---------------------------------
             response.writeHead(200, {
-                "Content-Type": "image/png",
+                "Content-Type": "image/" + request.params.format,
                 "Content-Length": buffer.length,
             });
             response.end(buffer);
             // or 
             // Response in rendered html file
             // ---------------------------------
-            // response.render("qr", { url: src})
+            //const base64 = buffer.toString('base64')
+            //const src = `data:image/png;base64,${base64}`
+            //response.render("qr", { url: src})
             next();
         });
     }
